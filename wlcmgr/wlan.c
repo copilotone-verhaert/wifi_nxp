@@ -1,4 +1,4 @@
-/** @file wlan.c
+ /** @file wlan.c
  *
  *  @brief  This file provides Core WLAN definition
  *
@@ -5025,34 +5025,35 @@ static void wlcm_process_net_dhcp_config(struct wifi_message *msg,
 #if CONFIG_IPV6
             }
 #endif
-            return;
+
         }
-#if CONFIG_WMSTATS
-        g_wm_stats.wm_leas_succ++;
-#endif /* CONFIG_WMSTATS */
-        /* Successful in getting ip address, so update
-         * local wlan-info params */
-        wlcm_d("update wlan-info params");
-        if (network->type == WLAN_BSS_TYPE_STA)
-        {
-            if_handle = net_get_mlan_handle();
-        }
-#if CONFIG_P2P
-        else if (network->type == WLAN_BSS_TYPE_WIFIDIRECT)
-        {
-            if_handle = net_get_wfd_handle();
-        }
-        else
-        {
-            /*Do nothing*/
-        }
-#endif /* CONFIG_P2P */
-        (void)net_get_if_addr((struct net_ip_config *)&network->ip, if_handle);
-        CONNECTION_EVENT(WLAN_REASON_ADDRESS_SUCCESS, NULL);
-        wlan.sta_state      = CM_STA_CONNECTED;
-        *next               = CM_STA_CONNECTED;
-        wlan.sta_ipv4_state = CM_STA_CONNECTED;
+// #if CONFIG_WMSTATS
+//         g_wm_stats.wm_leas_succ++;
+// #endif /* CONFIG_WMSTATS */
+//         /* Successful in getting ip address, so update
+//          * local wlan-info params */
+//         wlcm_d("update wlan-info params");
+//         if (network->type == WLAN_BSS_TYPE_STA)
+//         {
+//             if_handle = net_get_mlan_handle();
+//         }
+// #if CONFIG_P2P
+//         else if (network->type == WLAN_BSS_TYPE_WIFIDIRECT)
+//         {
+//             if_handle = net_get_wfd_handle();
+//         }
+//         else
+//         {
+//             /*Do nothing*/
+//         }
+// #endif /* CONFIG_P2P */
+//         // (void)net_get_if_addr((struct net_ip_config *)&network->ip, if_handle);
+//         CONNECTION_EVENT(WLAN_REASON_SUCCESS, NULL);
+//         // wlan.sta_state      = CM_STA_CONNECTED;
+//         // *next               = CM_STA_CONNECTED;
+//         // wlan.sta_ipv4_state = CM_STA_CONNECTED;
     }
+    return;
 }
 
 #if CONFIG_IPV6

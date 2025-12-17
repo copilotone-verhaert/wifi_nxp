@@ -1594,6 +1594,7 @@ void wifi_uap_handle_cmd_resp(HostCmd_DS_COMMAND *resp)
     }
 }
 
+__attribute__((optimize("O2")))
 int wifi_uap_rates_getset(uint8_t action, char *rates, uint8_t num_rates)
 {
     uint8_t i     = 0;
